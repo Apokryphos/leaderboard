@@ -23,7 +23,8 @@ class LeaderboardTable extends React.Component {
       return {
         sortCriteria: dataChanged
           ? props.initialSortCriteria
-          : prevState.sortCriteria
+          : prevState.sortCriteria,
+        reverseSort: dataChanged ? false : prevState.reverseSort
       };
     });
   }
@@ -64,9 +65,21 @@ class LeaderboardTable extends React.Component {
       let sortArrow = null;
       if (sortCriteria === this.state.sortCriteria) {
         if (this.state.reverseSort) {
-          sortArrow = '▾';
+          sortArrow = (
+            <i
+              class="fa fa-arrow-circle-down"
+              aria-hidden="true"
+              title="Descending order"
+            />
+          );
         } else {
-          sortArrow = '▴';
+          sortArrow = (
+            <i
+              class="fa fa-arrow-circle-up"
+              aria-hidden="true"
+              title="Ascending order"
+            />
+          );
         }
       }
 
@@ -76,8 +89,10 @@ class LeaderboardTable extends React.Component {
           className="sortable"
           title={title}
         >
-          {label}
-          {sortArrow}
+          <span>
+            {label}
+            {sortArrow}
+          </span>
         </th>
       );
     };
@@ -100,10 +115,14 @@ class LeaderboardTable extends React.Component {
       <table>
         <thead>
           <tr>
-            {getHeader('Rank', SortCriteria.RANK)}
-            {getHeader('Name', SortCriteria.USERNAME)}
-            {getHeader('Recent', SortCriteria.RECENT, 'Points in past 30 days')}
-            {getHeader('All-time', SortCriteria.ALLTIME)}
+            {getHeader('Rank ', SortCriteria.RANK)}
+            {getHeader('Name ', SortCriteria.USERNAME)}
+            {getHeader(
+              'Recent ',
+              SortCriteria.RECENT,
+              'Points in past 30 days'
+            )}
+            {getHeader('All-time ', SortCriteria.ALLTIME)}
           </tr>
         </thead>
         <tbody>{rows}</tbody>
