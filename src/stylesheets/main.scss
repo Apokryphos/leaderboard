@@ -1,0 +1,151 @@
+$page-background-color: #f1f1f3;
+
+$button-active-color: #ff8a5b;
+$button-inactive-color: desaturate($button-active-color, 75%);
+
+$table-header-background-color: #d3f8e2;
+$table-border-color: darken($table-header-background-color, 50%);
+$table-row-even-background-color: lighten($table-header-background-color, 5%);
+$table-row-odd-background-color: #fff;
+
+body {
+  background-color: $page-background-color;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+#app {
+  margin: 3em auto;
+  text-align: center;
+  width: 100%;
+}
+
+@mixin Button($color) {
+  background-color: $color;
+  background: linear-gradient(
+    180deg,
+    $color,
+    darken($color, 25%)
+  );
+  border-color: darken($color, 50%);
+}
+
+button {
+  @include Button($button-inactive-color);
+  border-radius: 0.5em;
+  color: black;
+  font-family: 'Permanent Marker', cursive;
+
+  margin: 0.5em;
+  padding: 0.5em;
+
+  &.active {
+    @include Button($button-active-color);
+    color: white;
+  }
+}
+
+table {
+  border: 0.125em solid $table-border-color;
+  border-collapse: collapse;
+  table-layout: fixed;
+  text-align: center;
+  width: 100%;
+}
+
+h1 {
+  color: #1d282d;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 100%;
+  margin-bottom: 1rem;
+}
+
+th {
+  background-color: $table-header-background-color;
+  border-bottom: 0.125em solid $table-border-color;
+  color: darken($table-header-background-color, 85%);
+  font-family: 'Permanent Marker', cursive;
+}
+
+.sortable {
+  cursor: pointer;
+}
+
+th,
+td {
+  font-family: 'Oswald', sans-serif;
+  padding: 0.5em;
+  text-align: center;
+}
+
+thead th:nth-child(1) {
+  width: 15%;
+}
+
+thead th:nth-child(2) {
+  width: 50%;
+}
+
+thead th:nth-child(3) {
+  width: 20%;
+}
+
+thead th:nth-child(4) {
+  width: 15%;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: $table-row-odd-background-color;
+}
+
+tbody tr:nth-child(even) {
+  background-color: $table-row-even-background-color;
+}
+
+@media screen and (min-width: 30em) {
+  #app {
+    width: 80%;
+  }
+
+  button {
+    margin: 1em;
+    padding: 0.5em 1em;
+  }
+}
+
+@media screen and (min-width: 35em) {
+  button {
+    width: 10em;
+  }
+
+  h1 {
+    font-size: 200%;
+  }
+
+  thead th:nth-child(1) {
+    width: 10%;
+  }
+
+  thead th:nth-child(2) {
+    width: 70%;
+  }
+
+  thead th:nth-child(3) {
+    width: 10%;
+  }
+
+  thead th:nth-child(4) {
+    width: 10%;
+  }
+}
+
+@media screen and (min-width: 70em) {
+  #app {
+    width: 60%;
+  }
+
+  h1 {
+    font-size: 300%;
+  }
+}
