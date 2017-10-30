@@ -68,7 +68,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>freeCodeCamp Leaderboard</h1>
+        <h1>Camper Leaderboard</h1>
         <LeaderboardButton
           label="Past 30 Days"
           isActive={!this.state.showAlltime}
